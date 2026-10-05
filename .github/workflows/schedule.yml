@@ -1,0 +1,19 @@
+name: Schedule test
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  clock-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Show execution time
+        run: |
+          date -u
+          TZ=Asia/Tokyo date
+          echo "Trigger: ${{ github.event_name }}"
